@@ -58,7 +58,7 @@ class Simulator {
      * @return float 
      */
     private function getMontantAssuranceCredit() {
-        return $this->getMontantEmprunt() * $this->getPercent_assu_credit();
+        return $this->getMontantEmprunt() * $this->getPercent_assu_credit() / 100;
     }
 
     /**
@@ -79,6 +79,22 @@ class Simulator {
         return $this->getEstimationCreditHorsAssurance() + ($this->getMontantAssuranceCredit()/12);
     }
 
+           /**
+     * retourne le montant mensuel du loyer au m2
+     * @return float 
+     */
+    public function getLoyerM2() {
+        return round($this->projet->getLoyerMensuel() / $this->projet->getSurfaceHabitable(), 2);
+    }
+    
+           /**
+     * retourne le montant mensuel du loyer reel
+     * @return float 
+     */
+    public function getLoyerNet() {
+        return round(($this->projet->getLoyerMensuel() * $this->projet->getNombreMoisPlein() / 12), 2);
+    }
+    
     /*     * ***GETTERS/SETTERS*** */
 
     function getProjet() {
@@ -114,7 +130,7 @@ class Simulator {
     }
 
     function getPercent_assu_credit() {
-        return $this->percent_assu_credit;
+        return $this->percent_assu_credit * 100;
     }
 
     function setPercent_assu_credit($percent_assu_credit) {

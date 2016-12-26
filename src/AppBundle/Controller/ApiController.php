@@ -25,6 +25,8 @@ class ApiController extends Controller
         $projet->setType("1");
         $projet->setDureeCredit(240);
         $projet->setTauxCredit(4);
+        $projet->setLoyerMensuel(360);
+        $projet->setNombreMoisPlein(11);
 
         $simulator = $this->get('simulator');
         $simulator->setProjet($projet);
@@ -41,6 +43,11 @@ class ApiController extends Controller
             'taux_assurance' => $simulator->getPercent_assu_credit(),
             'credit_sa' => $simulator->getEstimationCreditHorsAssurance(),
             'credit_aa' => $simulator->getEstimationCreditAvecAssurance(),
+            
+            'loyer_brut' => $projet->getLoyerMensuel(),
+            'loyer_m2' => $simulator->getLoyerM2(),
+            'nombre_loyers' => $projet->getNombreMoisPlein(),
+            'loyer_net' => $simulator->getLoyerNet(),
         ]);
     }
     

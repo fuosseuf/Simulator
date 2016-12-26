@@ -58,6 +58,62 @@
                     </tr>
                 </table>
             </div>
+
+            <div>
+                <h1>Recettes</h1>
+                <table border="1" cellpadding="10" cellspacing="1" width="100%">
+                    <tr>
+                        <td>Loyer brut mensuel</td>
+                        <td>{{ loyer_brut }}€</td>
+                    </tr>
+                    <tr>
+                        <td>Loyer au m<sup>2</sup></td>
+                        <td>{{ loyer_m2 }}€</td>
+                    </tr>
+                    <tr>
+                        <td>Nombre de loyers / an</td>
+                        <td>{{ nombre_loyers }}</td>
+                    </tr>
+                    <tr>
+                        <th>Loyer mensuel réel</th>
+                        <th>{{ loyer_net }}€</th>
+                    </tr>
+                </table>
+            </div>
+
+            <div>
+                <h1>Charges</h1>
+                <table border="1" cellpadding="10" cellspacing="1" width="100%">
+                    <tr>
+                        <td>Charges de coproprietés</td>
+                        <td>{{ charges_copro }}€</td>
+                    </tr>
+                    <tr>
+                        <td>Frais de gestion</td>
+                        <td>{{ frais_gestion }}€</td>
+                    </tr>
+                    <tr>
+                        <td>Frais de rénovation</td>
+                        <td>{{ frais_renovation }}€</td>
+                    </tr>
+                    <tr>
+                        <td>Assurance Garantie Risque Loyer</td>
+                        <td>{{ assu_grl }}€</td>
+                    </tr>
+                    <tr>
+                        <td>Assurance Propietaire Non Occupant</td>
+                        <td>{{ assu_pno }}€</td>
+                    </tr>
+                    <tr>
+                        <td>Taxe foncière</td>
+                        <td>{{ taxe_fonciere }}€</td>
+                    </tr>
+                    <tr>
+                        <td>Mensualité crédit</td>
+                        <td>{{ credit_aa }}€</td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
 {% endblock %}
