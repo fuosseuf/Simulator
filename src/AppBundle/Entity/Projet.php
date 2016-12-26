@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="projet")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ProjetRepository")
  */
-class Projet
-{
+class Projet {
+
     /**
      * @var int
      *
@@ -69,6 +69,13 @@ class Projet
      * @ORM\Column(name="apport", type="float")
      */
     private $apport;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="taxe_fonciere", type="float")
+     */
+    private $taxeFonciere;
 
     /**
      * @var float
@@ -168,14 +175,12 @@ class Projet
      */
     private $ageBien;
 
-
     /**
      * Get id
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -186,8 +191,7 @@ class Projet
      *
      * @return Projet
      */
-    public function setType($type)
-    {
+    public function setType($type) {
         $this->type = $type;
 
         return $this;
@@ -198,8 +202,7 @@ class Projet
      *
      * @return string
      */
-    public function getType()
-    {
+    public function getType() {
         return $this->type;
     }
 
@@ -210,8 +213,7 @@ class Projet
      *
      * @return Projet
      */
-    public function setDescriptif($descriptif)
-    {
+    public function setDescriptif($descriptif) {
         $this->descriptif = $descriptif;
 
         return $this;
@@ -222,8 +224,7 @@ class Projet
      *
      * @return string
      */
-    public function getDescriptif()
-    {
+    public function getDescriptif() {
         return $this->descriptif;
     }
 
@@ -234,8 +235,7 @@ class Projet
      *
      * @return Projet
      */
-    public function setSurface($surface)
-    {
+    public function setSurface($surface) {
         $this->surface = $surface;
 
         return $this;
@@ -246,8 +246,7 @@ class Projet
      *
      * @return float
      */
-    public function getSurface()
-    {
+    public function getSurface() {
         return $this->surface;
     }
 
@@ -258,8 +257,7 @@ class Projet
      *
      * @return Projet
      */
-    public function setSurfaceHabitable($surfaceHabitable)
-    {
+    public function setSurfaceHabitable($surfaceHabitable) {
         $this->surfaceHabitable = $surfaceHabitable;
 
         return $this;
@@ -270,8 +268,7 @@ class Projet
      *
      * @return float
      */
-    public function getSurfaceHabitable()
-    {
+    public function getSurfaceHabitable() {
         return $this->surfaceHabitable;
     }
 
@@ -282,8 +279,7 @@ class Projet
      *
      * @return Projet
      */
-    public function setSurfaceARenover($surfaceARenover)
-    {
+    public function setSurfaceARenover($surfaceARenover) {
         $this->surfaceARenover = $surfaceARenover;
 
         return $this;
@@ -294,8 +290,7 @@ class Projet
      *
      * @return float
      */
-    public function getSurfaceARenover()
-    {
+    public function getSurfaceARenover() {
         return $this->surfaceARenover;
     }
 
@@ -306,8 +301,7 @@ class Projet
      *
      * @return Projet
      */
-    public function setTypeRenovation($typeRenovation)
-    {
+    public function setTypeRenovation($typeRenovation) {
         $this->typeRenovation = $typeRenovation;
 
         return $this;
@@ -318,8 +312,7 @@ class Projet
      *
      * @return int
      */
-    public function getTypeRenovation()
-    {
+    public function getTypeRenovation() {
         return $this->typeRenovation;
     }
 
@@ -330,8 +323,7 @@ class Projet
      *
      * @return Projet
      */
-    public function setApport($apport)
-    {
+    public function setApport($apport) {
         $this->apport = $apport;
 
         return $this;
@@ -342,8 +334,7 @@ class Projet
      *
      * @return float
      */
-    public function getApport()
-    {
+    public function getApport() {
         return $this->apport;
     }
 
@@ -354,8 +345,7 @@ class Projet
      *
      * @return Projet
      */
-    public function setMontantTravaux($montantTravaux)
-    {
+    public function setMontantTravaux($montantTravaux) {
         $this->montantTravaux = $montantTravaux;
 
         return $this;
@@ -366,8 +356,7 @@ class Projet
      *
      * @return float
      */
-    public function getMontantTravaux()
-    {
+    public function getMontantTravaux() {
         return $this->montantTravaux;
     }
 
@@ -378,8 +367,7 @@ class Projet
      *
      * @return Projet
      */
-    public function setPrixMeubles($prixMeubles)
-    {
+    public function setPrixMeubles($prixMeubles) {
         $this->prixMeubles = $prixMeubles;
 
         return $this;
@@ -390,8 +378,7 @@ class Projet
      *
      * @return float
      */
-    public function getPrixMeubles()
-    {
+    public function getPrixMeubles() {
         return $this->prixMeubles;
     }
 
@@ -402,8 +389,7 @@ class Projet
      *
      * @return Projet
      */
-    public function setTauxCredit($tauxCredit)
-    {
+    public function setTauxCredit($tauxCredit) {
         $this->tauxCredit = $tauxCredit;
 
         return $this;
@@ -414,8 +400,7 @@ class Projet
      *
      * @return float
      */
-    public function getTauxCredit()
-    {
+    public function getTauxCredit() {
         return $this->tauxCredit;
     }
 
@@ -426,8 +411,7 @@ class Projet
      *
      * @return Projet
      */
-    public function setPrixVente($prixVente)
-    {
+    public function setPrixVente($prixVente) {
         $this->prixVente = $prixVente;
 
         return $this;
@@ -438,8 +422,7 @@ class Projet
      *
      * @return float
      */
-    public function getPrixVente()
-    {
+    public function getPrixVente() {
         return $this->prixVente;
     }
 
@@ -450,8 +433,7 @@ class Projet
      *
      * @return Projet
      */
-    public function setDureeCredit($dureeCredit)
-    {
+    public function setDureeCredit($dureeCredit) {
         $this->dureeCredit = $dureeCredit;
 
         return $this;
@@ -462,8 +444,7 @@ class Projet
      *
      * @return int
      */
-    public function getDureeCredit()
-    {
+    public function getDureeCredit() {
         return $this->dureeCredit;
     }
 
@@ -474,8 +455,7 @@ class Projet
      *
      * @return Projet
      */
-    public function setLoyerMensuel($loyerMensuel)
-    {
+    public function setLoyerMensuel($loyerMensuel) {
         $this->loyerMensuel = $loyerMensuel;
 
         return $this;
@@ -486,8 +466,7 @@ class Projet
      *
      * @return float
      */
-    public function getLoyerMensuel()
-    {
+    public function getLoyerMensuel() {
         return $this->loyerMensuel;
     }
 
@@ -498,8 +477,7 @@ class Projet
      *
      * @return Projet
      */
-    public function setNombreMoisPlein($nombreMoisPlein)
-    {
+    public function setNombreMoisPlein($nombreMoisPlein) {
         $this->nombreMoisPlein = $nombreMoisPlein;
 
         return $this;
@@ -510,8 +488,7 @@ class Projet
      *
      * @return int
      */
-    public function getNombreMoisPlein()
-    {
+    public function getNombreMoisPlein() {
         return $this->nombreMoisPlein;
     }
 
@@ -522,8 +499,7 @@ class Projet
      *
      * @return Projet
      */
-    public function setChargesCopropriete($chargesCopropriete)
-    {
+    public function setChargesCopropriete($chargesCopropriete) {
         $this->chargesCopropriete = $chargesCopropriete;
 
         return $this;
@@ -534,8 +510,7 @@ class Projet
      *
      * @return float
      */
-    public function getChargesCopropriete()
-    {
+    public function getChargesCopropriete() {
         return $this->chargesCopropriete;
     }
 
@@ -546,8 +521,7 @@ class Projet
      *
      * @return Projet
      */
-    public function setChargesEntretien($chargesEntretien)
-    {
+    public function setChargesEntretien($chargesEntretien) {
         $this->chargesEntretien = $chargesEntretien;
 
         return $this;
@@ -558,8 +532,7 @@ class Projet
      *
      * @return float
      */
-    public function getChargesEntretien()
-    {
+    public function getChargesEntretien() {
         return $this->chargesEntretien;
     }
 
@@ -570,8 +543,7 @@ class Projet
      *
      * @return Projet
      */
-    public function setFraisGestion($fraisGestion)
-    {
+    public function setFraisGestion($fraisGestion) {
         $this->fraisGestion = $fraisGestion;
 
         return $this;
@@ -582,8 +554,7 @@ class Projet
      *
      * @return float
      */
-    public function getFraisGestion()
-    {
+    public function getFraisGestion() {
         return $this->fraisGestion;
     }
 
@@ -594,8 +565,7 @@ class Projet
      *
      * @return Projet
      */
-    public function setLienAnnonce($lienAnnonce)
-    {
+    public function setLienAnnonce($lienAnnonce) {
         $this->lienAnnonce = $lienAnnonce;
 
         return $this;
@@ -606,8 +576,7 @@ class Projet
      *
      * @return string
      */
-    public function getLienAnnonce()
-    {
+    public function getLienAnnonce() {
         return $this->lienAnnonce;
     }
 
@@ -618,8 +587,7 @@ class Projet
      *
      * @return Projet
      */
-    public function setDateAchat($dateAchat)
-    {
+    public function setDateAchat($dateAchat) {
         $this->dateAchat = $dateAchat;
 
         return $this;
@@ -630,8 +598,7 @@ class Projet
      *
      * @return \DateTime
      */
-    public function getDateAchat()
-    {
+    public function getDateAchat() {
         return $this->dateAchat;
     }
 
@@ -642,8 +609,7 @@ class Projet
      *
      * @return Projet
      */
-    public function setDateCreation($dateCreation)
-    {
+    public function setDateCreation($dateCreation) {
         $this->dateCreation = $dateCreation;
 
         return $this;
@@ -654,8 +620,7 @@ class Projet
      *
      * @return \DateTime
      */
-    public function getDateCreation()
-    {
+    public function getDateCreation() {
         return $this->dateCreation;
     }
 
@@ -666,8 +631,7 @@ class Projet
      *
      * @return Projet
      */
-    public function setAgeBien($ageBien)
-    {
+    public function setAgeBien($ageBien) {
         $this->ageBien = $ageBien;
 
         return $this;
@@ -678,9 +642,32 @@ class Projet
      *
      * @return int
      */
-    public function getAgeBien()
-    {
+    public function getAgeBien() {
         return $this->ageBien;
     }
-}
 
+
+    /**
+     * Set taxeFonciere
+     *
+     * @param float $taxeFonciere
+     *
+     * @return Projet
+     */
+    public function setTaxeFonciere($taxeFonciere)
+    {
+        $this->taxeFonciere = $taxeFonciere;
+
+        return $this;
+    }
+
+    /**
+     * Get taxeFonciere
+     *
+     * @return float
+     */
+    public function getTaxeFonciere()
+    {
+        return $this->taxeFonciere;
+    }
+}

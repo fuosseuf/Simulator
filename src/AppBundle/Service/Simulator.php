@@ -66,35 +66,51 @@ class Simulator {
      * @return float 
      */
     public function getEstimationCreditHorsAssurance() {
-       $sup = $this->getMontantEmprunt() * $this->projet->getTauxCredit() / 1200;
-       $inf= (1 + $this->projet->getTauxCredit() / 1200);
-       return round($sup / (1 - (float)pow($inf, -$this->projet->getDureeCredit())), 2);
+        $sup = $this->getMontantEmprunt() * $this->projet->getTauxCredit() / 1200;
+        $inf = (1 + $this->projet->getTauxCredit() / 1200);
+        return round($sup / (1 - (float) pow($inf, -$this->projet->getDureeCredit())), 2);
     }
-    
-       /**
+
+    /**
      * retourne le montant mensuel du crédit hors assurance
      * @return float 
      */
     public function getEstimationCreditAvecAssurance() {
-        return $this->getEstimationCreditHorsAssurance() + ($this->getMontantAssuranceCredit()/12);
+        return $this->getEstimationCreditHorsAssurance() + ($this->getMontantAssuranceCredit() / 12);
     }
 
-           /**
+    /**
      * retourne le montant mensuel du loyer au m2
      * @return float 
      */
     public function getLoyerM2() {
         return round($this->projet->getLoyerMensuel() / $this->projet->getSurfaceHabitable(), 2);
     }
-    
-           /**
+
+    /**
      * retourne le montant mensuel du loyer reel
      * @return float 
      */
     public function getLoyerNet() {
         return round(($this->projet->getLoyerMensuel() * $this->projet->getNombreMoisPlein() / 12), 2);
     }
-    
+
+    /**
+     * retourne le montant de l'assurance PNO
+     * @return float 
+     */
+    public function getAssurancePNO() {
+        return round(($this->getMontantEmprunt() * $this->getAssurancePNO()), 2);
+    }
+
+    /**
+     * retourne le montant de l'assurance GRL
+     * @return float 
+     */
+    public function getAssuranceGRL() {
+        return round(($this->projet->getLoyerMensuel() * $this->getAssuranceGRL()), 2);
+    }
+
     /*     * ***GETTERS/SETTERS*** */
 
     function getProjet() {
