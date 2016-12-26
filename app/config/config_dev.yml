@@ -38,3 +38,5 @@ parameters:
     assurance_pno_pourcent: 0.015
     assurance_grl_pourcent: 0.03
     assurance_credit: 0.0036
+    ammortissemnt_bien: 70
+    ammortissemnt_meuble: 20

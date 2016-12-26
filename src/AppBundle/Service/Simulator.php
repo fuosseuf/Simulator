@@ -12,12 +12,16 @@ class Simulator {
     private $percent_assu_grl;
     private $prix_renovation;
     private $percent_assu_credit;
+    private $ammortissemnt_bien;
+    private $ammortissemnt_meuble;
 
-    function __construct($percent_notaire, $percent_assu_pno, $percent_assu_grl, $percent_assu_credit) {
+    function __construct($percent_notaire, $percent_assu_pno, $percent_assu_grl, $percent_assu_credit, $ammortissemnt_bien, $ammortissemnt_meuble) {
         $this->percent_notaire = $percent_notaire;
         $this->percent_assu_pno = $percent_assu_pno;
         $this->percent_assu_grl = $percent_assu_grl;
         $this->percent_assu_credit = $percent_assu_credit;
+        $this->ammortissemnt_bien = $ammortissemnt_bien;
+        $this->ammortissemnt_meuble = $ammortissemnt_meuble;
         $this->prix_renovation = array(
             0 => 0,
             1 => 200,
@@ -124,7 +128,7 @@ class Simulator {
      * @return float 
      */
     public function getCharges() {
-        return $this->getCreditAnnuel() + $this->projet->getTaxeFonciere() + $this->projet->getFraisGestion() + $this->projet->getChargesCopropriete() + $this->projet->getChargesEntretien() + $this->getAssuranceGRL() + $this->getAssurancePNO();
+        return $this->getCreditAnnuel() + $this->projet->getTaxeFonciere() + $this->getChargesImposbles();
     }
 
     /**
@@ -135,6 +139,37 @@ class Simulator {
         return $this->projet->getLoyerMensuel() * $this->projet->getNombreMoisPlein();
     }
 
+    /**
+     * retourne le montant annuel des intérêts d'emprunt
+     * @return float 
+     */
+    public function getInteretEmprunt() {
+        return $this->getCreditAnnuel() - $this->getMontantEmprunt() / ($this->projet->getNombreMoisPlein() / 12) - $this->getMontantEmprunt() * $this->getPercent_assu_credit();
+    }
+
+    /**
+     * retourne le montant annuel de l'amortissement du bien
+     * @return float 
+     */
+    public function getAmmortissemntBien() {
+        return round($this->projet->getPrixVente() / $this->getAmmortissemntBien(),2);
+    }
+    
+        /**
+     * retourne le montant annuel de l'amortissement des meubles
+     * @return float 
+     */
+    public function getAmmortissemntMeubles() {
+        return round($this->projet->getPrixMeubles() / $this->getAmmortissemntMeubles(),2);
+    }
+
+            /**
+     * retourne le montant des charges imposables
+     * @return float 
+     */
+    public function getChargesImposbles() {
+        return round($this->projet->getPrixMeubles() / $this->getAmmortissemntMeubles(),2);
+    }
     /*     * ***GETTERS/SETTERS*** */
 
     function getProjet() {
@@ -175,6 +210,22 @@ class Simulator {
 
     function setPercent_assu_credit($percent_assu_credit) {
         $this->percent_assu_credit = $percent_assu_credit;
+    }
+
+    function getAmmortissemnt_bien() {
+        return $this->ammortissemnt_bien;
+    }
+
+    function getAmmortissemnt_meuble() {
+        return $this->ammortissemnt_meuble;
+    }
+
+    function setAmmortissemnt_bien($ammortissemnt_bien) {
+        $this->ammortissemnt_bien = $ammortissemnt_bien;
+    }
+
+    function setAmmortissemnt_meuble($ammortissemnt_meuble) {
+        $this->ammortissemnt_meuble = $ammortissemnt_meuble;
     }
 
 }
