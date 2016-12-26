@@ -34,6 +34,6 @@ monolog:
 #    delivery_address: me@example.com
 
 parameters:
-    frais_notaire_pourcent: 8
-    assurance_pno_pourcent: 0.15
-    assurance_grl_pourcent: 3
+    frais_notaire_pourcent: 0.08
+    assurance_pno_pourcent: 0.015
+    assurance_grl_pourcent: 0.03

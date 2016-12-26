@@ -5,6 +5,8 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use AppBundle\Entity\Projet;
+use AppBundle\Service\Simulator;
 
 class ApiController extends Controller
 {
@@ -13,9 +15,30 @@ class ApiController extends Controller
      */
     public function indexAction(Request $request)
     {
-        // replace this example code with whatever you need
+        $projet = new Projet();
+        $projet->setPrixVente(100000);
+        $projet->setSurface(50);
+        $projet->setSurfaceARenover(20);
+        $projet->setSurfaceHabitable(50);
+        $projet->setPrixMeubles(3500);
+        $projet->setApport(100);
+        $projet->setTypeRenovation(1);
+        $projet->setType("1");
+        $projet->setDureeCredit(240);
+        $projet->setTauxCredit(4);
+        
+        $simulator = new Simulator(1, 1, 1);
+        
+        $simulator = $this->get('simulator');
+        $simulator->setProjet($projet);
         return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
+            'apport' => $projet->getApport(),
+            'prix_achat' => $projet->getPrixVente(),
+            'prix_meubles' => $projet->getPrixMeubles(),
+            'frais_notaire' => $simulator->getEstimationFraisNotaire(),
+            'montant_travaux' => $simulator->getEstimationPrixTravaux(),
+            'emprunt' => $simulator->getMontantEmprunt(),
+
         ]);
     }
     

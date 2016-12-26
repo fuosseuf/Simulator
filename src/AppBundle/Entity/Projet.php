@@ -73,7 +73,7 @@ class Projet
     /**
      * @var float
      *
-     * @ORM\Column(name="montant_travaux", type="float")
+     * @ORM\Column(name="montant_travaux", type="float", nullable=true)
      */
     private $montantTravaux;
 

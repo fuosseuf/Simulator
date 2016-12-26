@@ -4,6 +4,9 @@ parameters:
 #    parameter_name: value
 
 services:
+    simulator:
+        class: AppBundle\Service\Simulator
+        arguments: [%frais_notaire_pourcent%, %assurance_pno_pourcent%, %assurance_grl_pourcent%]
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]

@@ -30,16 +30,26 @@ class Simulator {
      * @return float 
      */
     public function getEstimationPrixTravaux() {
+        if($this->projet->getMontantTravaux() != null)
+            return $this->projet->getMontantTravaux();
         return $this->projet->getSurfaceARenover() * $this->prix_renovation[$this->projet->getTypeRenovation()];
     }
-
+    
+        /**
+     * retourne une estimation des frais de notaire
+     * @return float 
+     */
+    public function getEstimationFraisNotaire() {
+        return $this->projet->getPrixVente() * $this->getPercent_notaire();
+    }
+    
     /**
      * retourne le montant à emprunter
      * @return float 
      */
     
     public function getMontantEmprunt() {
-        if($this->projet->)
+       return $this->projet->getPrixVente() + $this->getEstimationPrixTravaux() + $this->projet->getPrixMeubles () + $this->getEstimationFraisNotaire() - $this->projet->getApport();
     }
     
     
