@@ -100,7 +100,7 @@ class Simulator {
      * @return float 
      */
     public function getAssurancePNO() {
-        return round(($this->getMontantEmprunt() * $this->getAssurancePNO()), 2);
+        return round(($this->getMontantEmprunt() * $this->getPercent_assu_pno()), 2);
     }
 
     /**
@@ -108,7 +108,7 @@ class Simulator {
      * @return float 
      */
     public function getAssuranceGRL() {
-        return round(($this->projet->getLoyerMensuel() * $this->getAssuranceGRL()), 2);
+        return round(($this->projet->getLoyerMensuel() * $this->getPercent_assu_grl()), 2);
     }
 
     /*     * ***GETTERS/SETTERS*** */

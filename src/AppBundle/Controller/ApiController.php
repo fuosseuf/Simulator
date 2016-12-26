@@ -13,7 +13,7 @@ class ApiController extends Controller
      * @Route("/", name="homepage")
      */
     public function indexAction(Request $request)
-    {
+    { 
         $projet = new Projet();
         $projet->setPrixVente(100000);
         $projet->setSurface(50);
@@ -27,6 +27,10 @@ class ApiController extends Controller
         $projet->setTauxCredit(4);
         $projet->setLoyerMensuel(360);
         $projet->setNombreMoisPlein(11);
+        $projet->setChargesCopropriete(200);
+        $projet->setChargesEntretien(300);
+        $projet->setTaxeFonciere(598);
+        $projet->setFraisGestion(330);
 
         $simulator = $this->get('simulator');
         $simulator->setProjet($projet);
