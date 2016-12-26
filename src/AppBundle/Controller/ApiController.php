@@ -52,6 +52,7 @@ class ApiController extends Controller
             'loyer_m2' => $simulator->getLoyerM2(),
             'nombre_loyers' => $projet->getNombreMoisPlein(),
             'loyer_net' => $simulator->getLoyerNet(),
+            'recettes' => $simulator->getRecettes(),
             
             'charges_copro' => $projet->getChargesCopropriete(),
             'frais_gestion' => $projet->getFraisGestion(),
@@ -59,6 +60,8 @@ class ApiController extends Controller
             'taxe_fonciere' => $projet->getTaxeFonciere(),
             'assu_grl' => $simulator->getAssuranceGRL(),
             'assu_pno' => $simulator->getAssurancePNO(),
+            'credit_annuel' => $simulator->getCreditAnnuel(),
+            'charges' => $simulator->getCharges(),
         ]);
     }
     

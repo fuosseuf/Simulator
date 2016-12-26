@@ -111,6 +111,30 @@ class Simulator {
         return round(($this->projet->getLoyerMensuel() * $this->getPercent_assu_grl()), 2);
     }
 
+    /**
+     * retourne le montant annuel du credit
+     * @return float 
+     */
+    public function getCreditAnnuel() {
+        return $this->getEstimationCreditAvecAssurance() * 12;
+    }
+
+    /**
+     * retourne le montant annuel des charges
+     * @return float 
+     */
+    public function getCharges() {
+        return $this->getCreditAnnuel() + $this->projet->getTaxeFonciere() + $this->projet->getFraisGestion() + $this->projet->getChargesCopropriete() + $this->projet->getChargesEntretien() + $this->getAssuranceGRL() + $this->getAssurancePNO();
+    }
+
+    /**
+     * retourne le montant annuel des recettes
+     * @return float 
+     */
+    public function getRecettes() {
+        return $this->projet->getLoyerMensuel() * $this->projet->getNombreMoisPlein();
+    }
+
     /*     * ***GETTERS/SETTERS*** */
 
     function getProjet() {
