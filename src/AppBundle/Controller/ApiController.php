@@ -6,7 +6,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Projet;
-use AppBundle\Service\Simulator;
 
 class ApiController extends Controller
 {
@@ -26,9 +25,7 @@ class ApiController extends Controller
         $projet->setType("1");
         $projet->setDureeCredit(240);
         $projet->setTauxCredit(4);
-        
-        $simulator = new Simulator(1, 1, 1);
-        
+
         $simulator = $this->get('simulator');
         $simulator->setProjet($projet);
         return $this->render('default/index.html.twig', [
@@ -38,7 +35,12 @@ class ApiController extends Controller
             'frais_notaire' => $simulator->getEstimationFraisNotaire(),
             'montant_travaux' => $simulator->getEstimationPrixTravaux(),
             'emprunt' => $simulator->getMontantEmprunt(),
-
+            
+            'duree' => $projet->getDureeCredit(),
+            'taux' => $projet->getTauxCredit(),
+            'taux_assurance' => $simulator->getPercent_assu_credit(),
+            'credit_sa' => $simulator->getEstimationCreditHorsAssurance(),
+            'credit_aa' => $simulator->getEstimationCreditAvecAssurance(),
         ]);
     }
     

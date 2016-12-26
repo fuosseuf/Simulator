@@ -32,6 +32,32 @@
                     </tr>
                 </table>
             </div>
+
+            <div>
+                <h1>Financement</h1>
+                <table border="1" cellpadding="10" cellspacing="1" width="100%">
+                    <tr>
+                        <td>Durée du crédit</td>
+                        <td>{{ duree }} mois</td>
+                    </tr>
+                    <tr>
+                        <td>Taux crédit</td>
+                        <td>{{ taux }}%</td>
+                    </tr>
+                    <tr>
+                        <td>Taux d'assurance crédit</td>
+                        <td>{{ taux_assurance }}%</td>
+                    </tr>
+                    <tr>
+                        <th>Mensualité crédit (hors assurance)</th>
+                        <th>{{ credit_sa }}€</th>
+                    </tr>
+                    <tr>
+                        <th>Mensualité crédit (avec assurance)</th>
+                        <th>{{ credit_aa }}€</th>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
 {% endblock %}
