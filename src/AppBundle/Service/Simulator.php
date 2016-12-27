@@ -144,7 +144,10 @@ class Simulator {
      * @return float 
      */
     public function getInteretEmprunt() {
-        return $this->getCreditAnnuel() - $this->getMontantEmprunt() / ($this->projet->getNombreMoisPlein() / 12) - $this->getMontantEmprunt() * $this->getPercent_assu_credit();
+        $nb_an = $this->projet->getDureeCredit()/12;
+        $credit_an = $this->getMontantEmprunt()/$nb_an;
+        $assu_an =  $this->getMontantEmprunt() * $this->getPercent_assu_credit()/100;  
+        return $this->getCreditAnnuel() - $credit_an - $assu_an;
     }
 
     /**
@@ -152,24 +155,67 @@ class Simulator {
      * @return float 
      */
     public function getAmmortissemntBien() {
-        return round($this->projet->getPrixVente() / $this->getAmmortissemntBien(),2);
+        return round($this->projet->getPrixVente() / $this->getAmmortissemnt_bien(), 2);
     }
-    
-        /**
+
+    /**
      * retourne le montant annuel de l'amortissement des meubles
      * @return float 
      */
     public function getAmmortissemntMeubles() {
-        return round($this->projet->getPrixMeubles() / $this->getAmmortissemntMeubles(),2);
+        return round($this->projet->getPrixMeubles() / $this->getAmmortissemnt_meuble(), 2);
     }
 
-            /**
+    /**
      * retourne le montant des charges imposables
      * @return float 
      */
     public function getChargesImposbles() {
-        return round($this->projet->getPrixMeubles() / $this->getAmmortissemntMeubles(),2);
+        return $this->projet->getFraisGestion() + $this->projet->getChargesCopropriete() + $this->projet->getChargesEntretien() + $this->getAssuranceGRL() + $this->getAssurancePNO();
     }
+
+    /**
+     * retourne le montant de l'abattement de 50% sous le regime BIC
+     * @return float 
+     */
+    public function getAbattement() {
+        return $this->getRecettes() / 2;
+    }
+
+    /**
+     * retourne le montant total des charges sous le regime Reel
+     * @return float 
+     */
+    public function getTotalChargesReel() {
+        return $this->getAmmortissemntBien() + $this->getAmmortissemntMeubles() + $this->getChargesImposbles() + $this->getInteretEmprunt();
+    }
+
+    /**
+     * retourne le montant des impôts sous le regime BIC
+     * @return float 
+     */
+    public function getImpotBIC() {
+        return round(($this->getRecettes() - $this->getAbattement()) * 0.455, 2);
+    }
+
+    /**
+     * retourne le montant des impôts sous le regime Reel
+     * @return float 
+     */
+    public function getImpotReel() {
+        if ($this->getResultatReel() > 0)
+            return round($this->getResultatReel() * 0.455, 2);
+        return 0;
+    }
+
+    /**
+     * retourne le résultat comptable sous le regime Reel
+     * @return float 
+     */
+    public function getResultatReel() {
+        return $this->getRecettes() - $this->getTotalChargesReel();
+    }
+
     /*     * ***GETTERS/SETTERS*** */
 
     function getProjet() {

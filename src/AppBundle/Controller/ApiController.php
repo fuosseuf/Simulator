@@ -62,6 +62,18 @@ class ApiController extends Controller
             'assu_pno' => $simulator->getAssurancePNO(),
             'credit_annuel' => $simulator->getCreditAnnuel(),
             'charges' => $simulator->getCharges(),
+            
+            'ammortissement_bien' => $simulator->getAmmortissemntBien(),
+            'ammortissement_meubles' => $simulator->getAmmortissemnt_meuble(),
+            'interet_emprunt' => $simulator->getInteretEmprunt(),
+            'charges_imposables' => $simulator->getChargesImposbles(),
+            'abattement' => $simulator->getAbattement(),
+            'total_charges_bic' => $simulator->getAbattement(),
+            'total_charges_reel' => $simulator->getTotalChargesReel(),
+            'resultat_bic' => $simulator->getAbattement(),
+            'resultat_reel' => $simulator->getResultatReel(),
+            'impot_bic' => $simulator->getImpotBIC(),
+            'impot_reel' => $simulator->getImpotReel(),
         ]);
     }
     

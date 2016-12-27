@@ -118,6 +118,62 @@
                     </tr>
                 </table>
             </div>
+
+            <div>
+                <h1>Impots</h1>
+                <table border="1" cellpadding="10" cellspacing="1" width="100%">
+                    <tr>
+                        <th></th>
+                        <th>Régime Micro BIC</th>
+                        <th>Régime Réel</th>
+                    </tr>
+                    <tr>
+                        <td>Recettes</td>
+                        <td>{{ recettes }}€</td>
+                        <td>{{ recettes }}€</td>
+                    </tr>
+                     <tr>
+                        <td>Ammortissement du bien</td>
+                        <td> - </td>
+                        <td>{{ ammortissement_bien }}€</td>
+                    </tr>
+                    <tr>
+                        <td>Ammortissement des meubles</td>
+                        <td> - </td>
+                        <td>{{ ammortissement_meubles }}€</td>
+                    </tr>
+                    <tr>
+                        <td>Intérêt d'emprunt</td>
+                        <td> - </td>
+                        <td>{{ interet_emprunt }}€</td>
+                    </tr>
+                    <tr>
+                        <td>Autres charges</td>
+                        <td> - </td>
+                        <td>{{ charges_imposables }}€</td>
+                    </tr>
+                    <tr>
+                        <td>Abattement 50%</td>
+                        <td>{{ abattement }}€</td>
+                        <td> - </td>
+                    </tr>
+                    <tr>
+                        <td>Total des charges</td>
+                        <td>{{ total_charges_bic }}€</td>
+                        <td>{{ total_charges_reel }}€</td>
+                    </tr>
+                    <tr>
+                        <td>Résultats</td>
+                        <td>{{ resultat_bic }}€</td>
+                        <td>{{ resultat_reel }}€</td>
+                    </tr>
+                    <tr>
+                        <th>Impôts + CSG</th>
+                        <th>{{ impot_bic }}€</th>
+                        <th>{{ impot_reel }}€</th>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
 {% endblock %}
