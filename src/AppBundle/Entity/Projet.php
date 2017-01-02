@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Projet
@@ -23,7 +24,7 @@ class Projet {
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="type", type="string", length=255)
      */
     private $type;
@@ -37,14 +38,14 @@ class Projet {
 
     /**
      * @var float
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="surface", type="float")
      */
     private $surface;
 
     /**
      * @var float
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="surface_habitable", type="float")
      */
     private $surfaceHabitable;
@@ -174,6 +175,28 @@ class Projet {
      * @ORM\Column(name="age_bien", type="integer", nullable=true)
      */
     private $ageBien;
+    
+    public function __construct() {
+        
+        $this->setPrixVente(0);
+        $this->setSurface(0);
+        $this->setSurfaceARenover(0.00);
+        $this->setSurfaceHabitable(0);
+        $this->setPrixMeubles(0);
+        $this->setApport(0);
+        $this->setTypeRenovation(0);
+        $this->setType("0");
+        $this->setDureeCredit(0);
+        $this->setTauxCredit(0);
+        $this->setLoyerMensuel(0);
+        $this->setNombreMoisPlein(12);
+        $this->setChargesCopropriete(0);
+        $this->setChargesEntretien(0);
+        $this->setTaxeFonciere(0);
+        $this->setFraisGestion(0);
+        $this->setDateAchat(new \DateTime());
+        $this->setDateCreation(new \DateTime());
+    }
 
     /**
      * Get id

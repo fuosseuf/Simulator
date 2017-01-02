@@ -3,17 +3,20 @@
 namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Projet;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use FOS\RestBundle\Controller\Annotations as Rest;
+use AppBundle\Form\ProjetType;
 
-class ApiController extends Controller
-{
+class ApiController extends Controller {
+
     /**
      * @Route("/", name="homepage")
      */
-    public function indexAction(Request $request)
-    { 
+    public function indexAction(Request $request) {
         $projet = new Projet();
         $projet->setPrixVente(100000);
         $projet->setSurface(50);
@@ -35,56 +38,94 @@ class ApiController extends Controller
         $simulator = $this->get('simulator');
         $simulator->setProjet($projet);
         return $this->render('default/index.html.twig', [
-            'apport' => $projet->getApport(),
-            'prix_achat' => $projet->getPrixVente(),
-            'prix_meubles' => $projet->getPrixMeubles(),
-            'frais_notaire' => $simulator->getEstimationFraisNotaire(),
-            'montant_travaux' => $simulator->getEstimationPrixTravaux(),
-            'emprunt' => $simulator->getMontantEmprunt(),
-            
-            'duree' => $projet->getDureeCredit(),
-            'taux' => $projet->getTauxCredit(),
-            'taux_assurance' => $simulator->getPercent_assu_credit(),
-            'credit_sa' => $simulator->getEstimationCreditHorsAssurance(),
-            'credit_aa' => $simulator->getEstimationCreditAvecAssurance(),
-            
-            'loyer_brut' => $projet->getLoyerMensuel(),
-            'loyer_m2' => $simulator->getLoyerM2(),
-            'nombre_loyers' => $projet->getNombreMoisPlein(),
-            'loyer_net' => $simulator->getLoyerNet(),
-            'recettes' => $simulator->getRecettes(),
-            
-            'charges_copro' => $projet->getChargesCopropriete(),
-            'frais_gestion' => $projet->getFraisGestion(),
-            'frais_renovation' => $projet->getChargesEntretien(),
-            'taxe_fonciere' => $projet->getTaxeFonciere(),
-            'assu_grl' => $simulator->getAssuranceGRL(),
-            'assu_pno' => $simulator->getAssurancePNO(),
-            'credit_annuel' => $simulator->getCreditAnnuel(),
-            'charges' => $simulator->getCharges(),
-            
-            'ammortissement_bien' => $simulator->getAmmortissemntBien(),
-            'ammortissement_meubles' => $simulator->getAmmortissemnt_meuble(),
-            'interet_emprunt' => $simulator->getInteretEmprunt(),
-            'charges_imposables' => $simulator->getChargesImposbles(),
-            'abattement' => $simulator->getAbattement(),
-            'total_charges_bic' => $simulator->getAbattement(),
-            'total_charges_reel' => $simulator->getTotalChargesReel(),
-            'resultat_bic' => $simulator->getAbattement(),
-            'resultat_reel' => $simulator->getResultatReel(),
-            'impot_bic' => $simulator->getImpotBIC(),
-            'impot_reel' => $simulator->getImpotReel(),
+                    'apport' => $projet->getApport(),
+                    'prix_achat' => $projet->getPrixVente(),
+                    'prix_meubles' => $projet->getPrixMeubles(),
+                    'frais_notaire' => $simulator->getEstimationFraisNotaire(),
+                    'montant_travaux' => $simulator->getEstimationPrixTravaux(),
+                    'emprunt' => $simulator->getMontantEmprunt(),
+                    'duree' => $projet->getDureeCredit(),
+                    'taux' => $projet->getTauxCredit(),
+                    'taux_assurance' => $simulator->getPercent_assu_credit(),
+                    'credit_sa' => $simulator->getEstimationCreditHorsAssurance(),
+                    'credit_aa' => $simulator->getEstimationCreditAvecAssurance(),
+                    'loyer_brut' => $projet->getLoyerMensuel(),
+                    'loyer_m2' => $simulator->getLoyerM2(),
+                    'nombre_loyers' => $projet->getNombreMoisPlein(),
+                    'loyer_net' => $simulator->getLoyerNet(),
+                    'recettes' => $simulator->getRecettes(),
+                    'charges_copro' => $projet->getChargesCopropriete(),
+                    'frais_gestion' => $projet->getFraisGestion(),
+                    'frais_renovation' => $projet->getChargesEntretien(),
+                    'taxe_fonciere' => $projet->getTaxeFonciere(),
+                    'assu_grl' => $simulator->getAssuranceGRL(),
+                    'assu_pno' => $simulator->getAssurancePNO(),
+                    'credit_annuel' => $simulator->getCreditAnnuel(),
+                    'charges' => $simulator->getCharges(),
+                    'ammortissement_bien' => $simulator->getAmmortissemntBien(),
+                    'ammortissement_meubles' => $simulator->getAmmortissemnt_meuble(),
+                    'interet_emprunt' => $simulator->getInteretEmprunt(),
+                    'charges_imposables' => $simulator->getChargesImposbles(),
+                    'abattement' => $simulator->getAbattement(),
+                    'total_charges_bic' => $simulator->getAbattement(),
+                    'total_charges_reel' => $simulator->getTotalChargesReel(),
+                    'resultat_bic' => $simulator->getAbattement(),
+                    'resultat_reel' => $simulator->getResultatReel(),
+                    'impot_bic' => $simulator->getImpotBIC(),
+                    'impot_reel' => $simulator->getImpotReel(),
         ]);
     }
-    
+
     /**
-     * @Route("/lucky/number", name="lucky_number")
+     * @Rest\View()
+     * @Rest\Get("/projets")
      */
-    public function luckyNumberAction() {
-        
-        $nb = mt_rand(0, 100);
-        return new \Symfony\Component\HttpFoundation\Response("<html><body><h1>Random Number</h1> <p>$nb</p></body></html>");
-        
+    public function getProjetsAction() {
+        return $this->getDoctrine()->getEntityManager()->getRepository('AppBundle:Projet')->findAll();
     }
-    
+
+    /**
+     * @Rest\View()
+     * @Rest\Get("/projets/{projet_id}")
+     */
+    public function getProjetAction($projet_id) {
+
+        $projet = $this->getDoctrine()->getEntityManager()->getRepository('AppBundle:Projet')->find($projet_id);
+
+        if (empty($projet))
+            return new JsonResponse(['message' => 'Ressource not found'], \Symfony\Component\HttpFoundation\Response::HTTP_NOT_FOUND);
+        return $projet;
+    }
+
+    /**
+     * @Rest\View()
+     * @Rest\Post("/projets")
+     */
+    public function postProjetsAction(Request $request) {
+        $em = $this->getDoctrine()->getEntityManager();
+        $projet = new Projet();
+        $form = $this->createForm(ProjetType::class, $projet);
+        $form->submit($request->request->all());
+
+        if ($form->isValid()) {
+            $em->persist($projet);
+            $em->flush();
+            return $projet;
+        }
+        return $form;
+    }
+
+    /**
+     * @Rest\View(statusCode=Response::HTTP_NO_CONTENT)
+     * @Rest\Delete("/projets/{projet_id}")
+     */
+    public function removeProjetsAction($projet_id) {
+        $em = $this->getDoctrine()->getEntityManager();
+        $projet = $em->getRepository('AppBundle:Projet')->find($projet_id);
+        if ($projet) {
+            $em->remove($projet);
+            $em->flush();
+        }
+    }
+
 }
