@@ -14,4 +14,5 @@ angular.module('frontApp')
       'AngularJS',
       'Karma'
     ];
+    this.nb = 10;
   });
