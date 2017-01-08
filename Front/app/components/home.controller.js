@@ -1,12 +1,12 @@
 (function () {
     'use strict';
 
-    angular.module('simulateur.authentifaication')
-           .controller('LoginCtrl', login);
+    angular.module('simulateur')
+           .controller('HomeCtrl', home);
    
-   login.$inject = ['$state'];
+   home.$inject = ['$state', '$http'];
    
-    function login($state) {
+    function home($state, $http) {
         var vm = this;
         this.username = 'Rodrigue'
         this.connect = connect;

@@ -9,15 +9,14 @@
         $stateProvider
                 .state('dashboard', {
                     url: '/dashboard',
-//                    abstract: true,
-                    templateUrl: 'componnents/Layout/layout.html',
+                    abstract: true,
+                    templateUrl: 'components/Layout/layout.html',
+                })
+                .state('dashboard.home', {
+                    url: '/home',
+                    templateUrl: 'components/home.html',
+                    controller: 'HomeCtrl',
+                    controllerAs: 'home'
                 });
-//                .state('dashboard.home', {
-//                    url: '/',
-//                    abstract: true,
-//                    templateUrl: 'componnents/home.html',
-//                    controller: 'HomeCtrl',
-//                    controllerAs: 'home'
-//                });
     }
 })();
