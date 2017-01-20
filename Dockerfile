@@ -3,6 +3,9 @@ FROM eboraas/apache-php
 
 RUN apt-get update && apt-get install -y nodejs
 
+RUN apt-get install -y curl php5-cli \
+   &&  curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
 # RUN npm install -g grunt-cli
 
 EXPOSE 8089
