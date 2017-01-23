@@ -105,6 +105,15 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
         }
 
+        // homepage
+        if (rtrim($pathinfo, '/') === '') {
+            if (substr($pathinfo, -1) !== '/') {
+                return $this->redirect($pathinfo.'/', 'homepage');
+            }
+
+            return array (  '_controller' => 'AppBundle\\Controller\\web\\ProjetController::indexAction',  '_route' => 'homepage',);
+        }
+
         // index
         if ($pathinfo === '/index') {
             if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {

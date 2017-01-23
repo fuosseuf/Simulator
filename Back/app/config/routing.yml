@@ -1,7 +1,7 @@
-#app:
-#    resource: "@AppBundle/Controller/"
-#    type:     annotation
+projet_web:
+    resource: "@AppBundle/Controller/Web"
+    type:     annotation
 
-projet:
+projet_api:
     type: rest
     resource: "@AppBundle/Controller/ApiController.php"
