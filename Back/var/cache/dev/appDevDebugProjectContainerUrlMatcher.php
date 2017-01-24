@@ -105,14 +105,31 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
         }
 
+        // app_web_projet_getprojets
+        if ($pathinfo === '/web/projets') {
+            if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                $allow = array_merge($allow, array('GET', 'HEAD'));
+                goto not_app_web_projet_getprojets;
+            }
+
+            return array (  '_controller' => 'AppBundle\\Controller\\web\\ProjetController::getProjetsAction',  '_route' => 'app_web_projet_getprojets',);
+        }
+        not_app_web_projet_getprojets:
+
         // homepage
         if (rtrim($pathinfo, '/') === '') {
+            if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                $allow = array_merge($allow, array('GET', 'HEAD'));
+                goto not_homepage;
+            }
+
             if (substr($pathinfo, -1) !== '/') {
                 return $this->redirect($pathinfo.'/', 'homepage');
             }
 
             return array (  '_controller' => 'AppBundle\\Controller\\web\\ProjetController::indexAction',  '_route' => 'homepage',);
         }
+        not_homepage:
 
         // index
         if ($pathinfo === '/index') {

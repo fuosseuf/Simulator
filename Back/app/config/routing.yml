@@ -1,6 +1,6 @@
 projet_web:
-    resource: "@AppBundle/Controller/Web"
     type:     annotation
+    resource: "@AppBundle/Controller/web/ProjetController.php"
 
 projet_api:
     type: rest

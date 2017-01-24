@@ -3,14 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/media/www-dev/private/Simulator/Front/bower.json</file>
-            <file>file:/media/www-dev/private/Simulator/Front/app/scripts/app.js</file>
-            <file>file:/media/www-dev/private/Simulator/Front/app/styles/main.scss</file>
-            <file>file:/media/www-dev/private/Simulator/Front/app/index.html</file>
-            <file>file:/media/www-dev/private/Simulator/Front/package.json</file>
-            <file>file:/media/www-dev/private/Simulator/Front/app/views/main.html</file>
-            <file>file:/media/www-dev/private/Simulator/Front/app/scripts/controllers/main.js</file>
-            <file>file:/media/www-dev/private/Simulator/Front/Gruntfile.js</file>
+            <file>file:/media/www-dev/private/Simulator/Back/app/config/config.yml</file>
+            <file>file:/media/www-dev/private/Simulator/Back/src/AppBundle/Controller/web/ProjetController.php</file>
+            <file>file:/media/www-dev/private/Simulator/Back/app/config/routing.yml</file>
+            <file>file:/media/www-dev/private/Simulator/Back/src/AppBundle/Controller/ApiController.php</file>
         </group>
     </open-files>
 </project-private>
